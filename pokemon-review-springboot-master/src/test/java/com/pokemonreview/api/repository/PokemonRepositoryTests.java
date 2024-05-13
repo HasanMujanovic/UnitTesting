@@ -43,4 +43,15 @@ public class PokemonRepositoryTests {
         Assertions.assertThat(pokemons.size()).isEqualTo(2);
         
     }
+
+    @Test
+    public void PokemonRepositoryGetById(){
+        Pokemon pokemon1 = Pokemon.builder().name("Charizard").type("Fire").build();
+        pokemonRepository.save(pokemon1);
+
+        Pokemon getByIdPokemon = pokemonRepository.findById(pokemon1.getId()).get();
+
+        Assertions.assertThat(getByIdPokemon).isNotNull();
+        Assertions.assertThat(getByIdPokemon.getId()).isEqualTo(pokemon1.getId());
+    }
 }
